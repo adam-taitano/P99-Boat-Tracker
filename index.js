@@ -10,7 +10,7 @@
  * App Variables
  */
  const app = express();
- const port = process.env.PORT || "8000";
+ const port = process.env.PORT || "3000";
 
 /**
  *  App Configuration
