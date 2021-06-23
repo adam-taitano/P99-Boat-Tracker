@@ -15,12 +15,14 @@
 /**
  *  App Configuration
  */
+ app.set("views", path.join(__dirname, "views"));
+ app.set("view engine", "pug");
 
 /**
  * Routes Definitions
  */
  app.get("/", (req, res) => {
-   res.status(200).send("P99 Boat Tracker: Countdown to nostalgia!");
+   res.render("index", { title: "Home" });
  });
 
 /**
