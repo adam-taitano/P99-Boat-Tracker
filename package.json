@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/adam-taitano/P99-Boat-Tracker/issues"
   },
-  "homepage": "https://github.com/adam-taitano/P99-Boat-Tracker#readme"
+  "homepage": "https://github.com/adam-taitano/P99-Boat-Tracker#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
