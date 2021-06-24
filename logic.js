@@ -118,5 +118,15 @@ class Countdown {
 }
 
 //export classes
-// modules.export { Simulator, Boat, DockList, Dock, Countdown }
-exports.Dock = Dock;
+// module.exports {
+//   Simulator: Simulator,
+//   Boat: Boat,
+//   DockList: DockList,
+//   Dock: Dock,
+//   Countdown: Countdown
+module.exports.Simulator = Simulator;
+module.exports.Boat = Boat;
+module.exports.DockList = DockList;
+module.exports.Dock = Dock;
+module.exports.Countdown = Countdown;
+// exports.Dock = { Dock };
