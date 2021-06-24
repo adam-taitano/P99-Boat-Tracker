@@ -81,11 +81,15 @@ class DockList {
 
 //Port
 class Dock {
+  //provide dock object with the following constructor properties:
   constructor(info) {
-    this.name = info.name;
-    this.loc = info.loc;
-    this.dockTime = info.dockTime;
-    this.transitTime = info.transitTime;
+    if (info) {
+      this.name = info.name;
+      this.zone = info.zone;
+      this.loc = info.loc;
+      this.dockTime = info.dockTime;
+      this.transitTime = info.transitTime;
+    }
     next = null;
     prev = null;
     hasBoat = false;
