@@ -64,6 +64,9 @@ class DockList {
   constructor(list) {
     this.head = null;
     this.tail = null;
+    if (list) {
+      list.forEach(dock => {this.append(dock)});
+    }
   }
 
   append() {
@@ -82,17 +85,15 @@ class DockList {
 //Port
 class Dock {
   //provide dock object with the following constructor properties:
-  constructor(info) {
-    if (info) {
-      this.name = info.name;
-      this.zone = info.zone;
-      this.loc = info.loc;
-      this.dockTime = info.dockTime;
-      this.transitTime = info.transitTime;
-    }
-    next = null;
-    prev = null;
-    hasBoat = false;
+  constructor(name, zone, loc, dockTime, travelTime, next, prev, hasBoat) {
+    Object.assign(this, { name, zone, loc, dockTime, travelTime, next, prev, hasBoat });
+    if (!this.next) { this.next = null }
+    if (!this.prev) { this.prev = null }
+  }
+  
+  update(info) {
+    console.log("updating dock");
+    Object.assign(this, info);
   }
 }
 
