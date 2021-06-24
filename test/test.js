@@ -1,8 +1,12 @@
-var assert = require('assert');
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal([1, 2, 3].indexOf(4), -1);
+const Dock = require('../logic.js');
+const assert = require('assert');
+
+describe('Dock', function() {
+  describe('#constructor()', function() {
+    it('should assign null to next and prev properties if not provided', function() {
+      let dock = new Dock.Dock();
+      assert.equal(dock.next, null);
+      assert.equal(dock.prev, null);
     });
   });
 });

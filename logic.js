@@ -90,7 +90,7 @@ class Dock {
     if (!this.next) { this.next = null }
     if (!this.prev) { this.prev = null }
   }
-  
+
   update(info) {
     console.log("updating dock");
     Object.assign(this, info);
@@ -118,4 +118,5 @@ class Countdown {
 }
 
 //export classes
-export { Simulator, Boat, DockList, Dock, Countdown }
+// modules.export { Simulator, Boat, DockList, Dock, Countdown }
+exports.Dock = Dock;
