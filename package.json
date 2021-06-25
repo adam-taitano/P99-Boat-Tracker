@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "An attempt to simulate and project boat trips in P99 EQ.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "mocha",
     "dev": "nodemon ./index.js",

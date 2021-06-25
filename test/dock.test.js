@@ -1,5 +1,7 @@
-const Todos = require('../logic.js');
-const assert = require('assert');
+// const Todos = require('../logic.js');
+import * as Todos from "../logic.js";
+import { strict as assert } from 'assert';
+// const assert = require('assert');
 
 describe('Dock', function() {
   before(function() {

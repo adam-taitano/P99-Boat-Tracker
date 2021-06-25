@@ -1,5 +1,5 @@
 //classes and functions go here
-
+import { Dock } from "./modules/dock.js";
 //Simulator
 class Simulator {
   constructor(input) {
@@ -139,25 +139,25 @@ class DockList {
 }
 
 //Port
-class Dock {
-  //provide dock object, or use default properties:
-  constructor(info = {}) {
-    Object.assign(this, {
-      name: null,
-      zone: null,
-      loc: new Location(),
-      dockTime: null,
-      travelTime: null,
-      next: null,
-      prev: null,
-      hasBoat: false
-    }, info);
-  }
-
-  update(info) {
-    Object.assign(this, info);
-  }
-}
+// class Dock {
+//   //provide dock object, or use default properties:
+//   constructor(info = {}) {
+//     Object.assign(this, {
+//       name: null,
+//       zone: null,
+//       loc: new Location(),
+//       dockTime: null,
+//       travelTime: null,
+//       next: null,
+//       prev: null,
+//       hasBoat: false
+//     }, info);
+//   }
+//
+//   update(info) {
+//     Object.assign(this, info);
+//   }
+// }
 
 //Location
 class Location {
@@ -202,9 +202,10 @@ class Countdown {
 }
 
 //export classes
-module.exports.Simulator = Simulator;
-module.exports.Boat = Boat;
-module.exports.DockList = DockList;
-module.exports.Dock = Dock;
-module.exports.Location = Location;
-module.exports.Countdown = Countdown;
+export { Simulator, Boat, DockList, Dock, Location, Countdown };
+// module.exports.Simulator = Simulator;
+// module.exports.Boat = Boat;
+// module.exports.DockList = DockList;
+// module.exports.Dock = Dock;
+// module.exports.Location = Location;
+// module.exports.Countdown = Countdown;
