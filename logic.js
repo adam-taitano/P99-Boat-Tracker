@@ -175,6 +175,10 @@ class Location {
   update(info) {
     Object.assign(this, info);
   }
+
+  isValid(x,y) {
+    
+  }
 }
 
 //Countdown

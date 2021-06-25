@@ -30,4 +30,36 @@ describe('Location', function() {
       assert.equal(this.loc.y, -200);
     })
   })
+  context('#isValid()', function() {
+    it('return true if parameter x < xmax', function() {
+
+    };
+    it('return false if parameter x > xmax', function() {
+
+    });
+    it('return true if parameter x > xmin', function() {
+
+    });
+    it('return false if paramter x < xmin', function() {
+
+    })
+    it('return true if parameter y < ymax', function() {
+
+    });
+    it('return false if parameter y > ymax'), function() {
+
+    };
+    it('return true if parameter y > ymin'), function() {
+
+    };
+    it('return false if parameter y < ymin'), function() {
+
+    };
+    it('return true if arguments x and y are valid'), function() {
+
+    };
+    it('return false if arguments x and y are not valid'), function() {
+
+    }
+  })
 });
