@@ -176,8 +176,8 @@ class Location {
     Object.assign(this, info);
   }
 
-  isValid(x,y) {
-    
+  isMatch(x, y) {
+
   }
 }
 
