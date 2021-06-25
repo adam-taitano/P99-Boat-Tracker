@@ -1,20 +1,21 @@
-// const Todos = require('../logic.js');
-import * as Todos from "../logic.js";
+import { Dock } from "../logic.js";
+import { DockList } from "../logic.js";
 import { strict as assert } from 'assert';
 
 describe('DockList', function() {
   context('#append()', function() {
     beforeEach(function() {
-      this.list = new Todos.DockList();
-      this.first = new Todos.Dock({name: 'first'});
-      this.second = new Todos.Dock({name: 'second'});
-      this.third = new Todos.Dock({name: 'third'});
+      this.list = new DockList();
+      this.first = new Dock({name: 'first'});
+      this.second = new Dock({name: 'second'});
+      this.third = new Dock({name: 'third'});
     });
     it('should add to an empty list', function() {
       this.list.append(this.first);
       assert.equal(this.list.head, this.first);
-      assert.equal(this.list.next, null);
-      assert.equal(this.list.prev, null);
+      assert.equal(this.list.tail, this.first);
+      // assert.equal(this.list.next, null);
+      // assert.equal(this.list.prev, null);
     });
     it('should add to the end of a list with a single dock', function() {
       this.list.append(this.first);
@@ -37,9 +38,9 @@ describe('DockList', function() {
   });
   context('#pop()', function() {
     beforeEach(function() {
-      this.list = new Todos.DockList();
-      this.first = new Todos.Dock({name: 'first'});
-      this.second = new Todos.Dock({name: 'second'});
+      this.list = new DockList();
+      this.first = new Dock({name: 'first'});
+      this.second = new Dock({name: 'second'});
       this.list.append(this.first);
       this.list.append(this.second);
     });
@@ -54,12 +55,12 @@ describe('DockList', function() {
     it('should reset the tail correctly', function() {
       this.list.pop();
       assert.equal(this.list.tail, this.first);
-    })
+    });
   });
   context('#findByLoc()', function() {
 
   });
   context('#findByName()', function() {
 
-  })
-})
+  });
+});

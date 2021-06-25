@@ -1,5 +1,6 @@
 // index.js
-
+require = require("esm")(module)
+module.exports = require('./logic.js')
 /**
  * Required External Modules
  */

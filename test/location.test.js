@@ -1,12 +1,11 @@
-// const Todos = require('../logic.js');
-import * as Todos from "../logic.js";
+import { Location } from "../logic.js";
 import { strict as assert } from 'assert';
-// const assert = require('assert');
+
 
 describe('Location', function() {
   context('#constructor()', function() {
     beforeEach(function() {
-      this.loc = new Todos.Location();
+      this.loc = new Location();
       this.obj = {};
     });
     it('should assign null to ymin and xmax', function() {
@@ -21,7 +20,7 @@ describe('Location', function() {
   });
   context('#update()', function() {
     beforeEach(function() {
-      this.loc = new Todos.Location();
+      this.loc = new Location();
       this.obj = {};
     });
     it('preserve existing properties', function() {
@@ -38,48 +37,47 @@ describe('Location', function() {
   });
   context('#isMatch()', function() {
     beforeEach(function() {
-      this.loc = new Todos.Location();
-      this.update = {x: -2000, y: 7500, xmin: -2500, xmax: -1500, ymin: 7000, ymax: 8000};
+      this.loc = new Location({x: -2000, y: 7500, xmin: -2500, xmax: -1500, ymin: 7000, ymax: 8000});
     });
     it('return true if parameter x < xmax', function() {
-      const result = this.loc.isMatch(-2000, 0);
+      const result = this.loc.isMatch(-2000, 7000);
       assert.equal(result, true);
     });
     it('return false if parameter x > xmax', function() {
-      const result = this.loc.isMatch(-1000, 0);
+      const result = this.loc.isMatch(-1000, 8000);
       assert.equal(result, false);
     });
     it('return true if parameter x > xmin', function() {
-      const result = this.loc.isMatch(-1000, 0);
+      let result = this.loc.isMatch(-2000, 7500);
       assert.equal(result, true);
     });
     it('return false if paramter x < xmin', function() {
-      const result = this.loc.isMatch(-3000, 0);
+      const result = this.loc.isMatch(-3000, -2000);
       assert.equal(result, false);
     });
     it('return true if parameter y < ymax', function() {
-      const result = this.loc.isMatch(0, 7500);
+      const result = this.loc.isMatch(-2500, 7500);
       assert.equal(result, true);
     });
-    it('return false if parameter y > ymax'), function() {
-      const result = this.loc.isMatch(0, 8000);
+    it('return false if parameter y > ymax', function() {
+      const result = this.loc.isMatch(-1500, 8100);
       assert.equal(result, false);
-    };
-    it('return true if parameter y > ymin'), function() {
-      const result = this.loc.isMatch(0, 7500);
-      assert.equal(result, true);
-    };
-    it('return false if parameter y < ymin'), function() {
-      const result = this.loc.isMatch(0, 6000);
-      assert.equal(result, false);
-    };
-    it('return true if arguments x and y are valid'), function() {
+    });
+    it('return true if parameter y > ymin', function() {
       const result = this.loc.isMatch(-2000, 7500);
       assert.equal(result, true);
-    };
-    it('return false if arguments x and y are not valid'), function() {
-      const result = this.loc.isMatch(-3000, 8500);
+    });
+    it('return false if parameter y < ymin', function() {
+      const result = this.loc.isMatch(-2000, 6000);
+      assert.equal(result, false);
+    });
+    it('return true if arguments x and y are valid', function() {
+      const result = this.loc.isMatch(-2000, 7500);
       assert.equal(result, true);
-    };
+    });
+    it('return false if arguments x and y are not valid', function() {
+      const result = this.loc.isMatch(-3000, 8500);
+      assert.equal(result, false);
+    });
   });
 });

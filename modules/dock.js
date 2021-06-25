@@ -1,3 +1,4 @@
+import { Location } from './location.js';
 export class Dock {
   //provide dock object, or use default properties:
   constructor(info = {}) {
