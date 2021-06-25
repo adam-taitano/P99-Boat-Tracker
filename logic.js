@@ -161,13 +161,19 @@ class Dock {
 
 //Location
 class Location {
-  constructor() {
-    this.x = null;
-    this.y = null;
-    this.xmin = null;
-    this.ymin = null;
-    this.xmax = null;
-    this.xmin = null;
+  constructor(info = {}) {
+    Object.assign(this, {
+      x: null,
+      xmin: null,
+      xmax: null,
+      y: null,
+      ymin: null,
+      ymax: null
+    }, info);
+  }
+
+  update(info) {
+    Object.assign(this, info);
   }
 }
 
@@ -196,4 +202,5 @@ module.exports.Simulator = Simulator;
 module.exports.Boat = Boat;
 module.exports.DockList = DockList;
 module.exports.Dock = Dock;
+module.exports.Location = Location;
 module.exports.Countdown = Countdown;
