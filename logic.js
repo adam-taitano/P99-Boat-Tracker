@@ -128,29 +128,46 @@ class DockList {
   }
 
   findByName(head, name) {
-    if (!this.head) return null;
+    if (!head) return null;
     else if (head.name === name) {
       return head;
     }
     else {
-      return findByName(head.next, name);
+      return this.findByName(head.next, name);
     }
   }
 }
 
 //Port
 class Dock {
-
-  //provide dock object with the following constructor properties:
-  constructor(obj) {
-    Object.assign(this, { name, zone, loc, dockTime, travelTime, next, prev, hasBoat });
-    if (!this.next) { this.next = null }
-    if (!this.prev) { this.prev = null }
+  //provide dock object, or use default properties:
+  constructor(info = {}) {
+    Object.assign(this, {
+      name: null,
+      zone: null,
+      loc: new Location(),
+      dockTime: null,
+      travelTime: null,
+      next: null,
+      prev: null,
+      hasBoat: false
+    }, info);
   }
 
   update(info) {
-    console.log("updating dock");
     Object.assign(this, info);
+  }
+}
+
+//Location
+class Location {
+  constructor() {
+    this.x = null;
+    this.y = null;
+    this.xmin = null;
+    this.ymin = null;
+    this.xmax = null;
+    this.xmin = null;
   }
 }
 
