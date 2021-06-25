@@ -1,11 +1,11 @@
 // const Todos = require('../logic.js');
-import * as Todos from "../logic.js";
+import { Dock } from "../logic.js";
 import { strict as assert } from 'assert';
-// const assert = require('assert');
+// var Dock = require('../modules/dock.js');
 
 describe('Dock', function() {
   before(function() {
-    this.dock = new Todos.Dock();
+    this.dock = new Dock();
     this.obj = {};
   })
   context('#constructor()', function() {
@@ -23,7 +23,7 @@ describe('Dock', function() {
     it('preserve existing properties', function() {
       this.obj.name = 'original';
       this.dock.update(this.obj);
-      this.dock.update({next: new Todos.Dock()});
+      this.dock.update({next: new Dock()});
       assert.equal(this.obj.name, 'original')
     });
     it('merge properties passed in as an object', function() {
