@@ -56,9 +56,9 @@ describe('DockList', function() {
   });
   context('#pop()', function() {
     beforeEach(function() {
-      this.list = new DockList();
-      this.first = new Dock({name: 'first'});
-      this.second = new Dock({name: 'second'});
+      // this.list = new DockList();
+      // this.first = new Dock({name: 'first'});
+      // this.second = new Dock({name: 'second'});
       this.list.append(this.first);
       this.list.append(this.second);
     });
@@ -95,21 +95,38 @@ describe('DockList', function() {
       assert.equal(found, null);
     });
     it('returns null if loc pararmeter is not a location object', function() {
-
+      let find = new Dock();
+      let found = this.list.findByLoc(find);
+      assert.equal(found, null);
     });
     it('returns null if list is empty', function() {
-
+      let list = new DockList();
+      let find = new Dock();
+      assert.equal(list.findByLoc(find), null)
     });
   });
-  context('#findByName()', function() {
+  context('#findName()', function() {
+    beforeEach(function() {
+      this.list.append(this.first);
+      this.list.append(this.second);
+      this.list.append(this.third);
+    });
+    it('returns null if name is not a string', function() {
+      let result = this.list.findName();
+      assert.equal(result, null);
+    });
     it('returns dock if name matches', function() {
-
+      let result = this.list.findName('third');
+      assert.equal(result, this.list.tail);
+      // assert.equal(result, this.second);
     });
     it('returns null if name is not in docklist', function() {
-
+      let result = this.list.findName('fourth');
+      assert.equal(result, null);
     });
     it('returns null if parameter is not a string', function() {
-
+      let result = this.list.findName(true);
+      assert.equal(result, null);
     });
   });
 });

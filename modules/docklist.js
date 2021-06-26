@@ -1,5 +1,5 @@
 import { Dock } from './dock.js';
-
+import { Location } from './location.js';
 //PortList
 export class DockList {
   constructor(list) {
@@ -47,7 +47,7 @@ export class DockList {
 
   findByLoc(locObj) {
     //check if empty
-    if (!this.head) {
+    if (!this.head || !(locObj instanceof Location)) {
       return null;
     }
     //traverse list until match or at tail
@@ -61,9 +61,17 @@ export class DockList {
     return current;
   }
 
+  findName(name) {
+    if (!this.head || typeof name !== "string")
+      return null;
+    else {
+      return this.findByName(this.head, name);
+    }
+  }
+
   findByName(head, name) {
     if (!head) return null;
-    else if (head.name === name) {
+    if (head.name === name) {
       return head;
     }
     else {
