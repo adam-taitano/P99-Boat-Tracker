@@ -1,5 +1,6 @@
 import { Dock } from './dock.js';
 import { Location } from './location.js';
+
 //PortList
 export class DockList {
   constructor(list) {
@@ -8,10 +9,12 @@ export class DockList {
     this.count = 0;
     if (list) {
       list.forEach(dock => {
-        this.append(dock);
-        ++this.count;
+        if (dock instanceof Dock) {
+          this.append(dock);
+        }
       });
     }
+    Object.preventExtensions();
   }
 
   append(dock) {
@@ -61,6 +64,7 @@ export class DockList {
     return current;
   }
 
+  //used as a public function to call recursive findByName
   findName(name) {
     if (!this.head || typeof name !== "string")
       return null;

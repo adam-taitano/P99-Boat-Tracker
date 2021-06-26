@@ -24,6 +24,12 @@ describe('DockList', function() {
       assert.equal(list.head.next, this.second);
       assert.equal(list.tail.prev, this.second);
     });
+    it('does not add non-dock elements from list', function() {
+      let loc = new Location();
+      let array = [this.first, loc, this.third];
+      let check = new DockList(array);
+      assert.equal(check.count, 2);
+    });
   });
   context('#append()', function() {
     it('should add to an empty list', function() {
@@ -118,7 +124,7 @@ describe('DockList', function() {
     it('returns dock if name matches', function() {
       let result = this.list.findName('third');
       assert.equal(result, this.list.tail);
-      // assert.equal(result, this.second);
+      assert.equal(result, this.third);
     });
     it('returns null if name is not in docklist', function() {
       let result = this.list.findName('fourth');
