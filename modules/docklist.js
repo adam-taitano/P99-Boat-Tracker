@@ -1,5 +1,5 @@
 import { Dock } from './dock.js';
-import { Location } from './location.js';
+
 //PortList
 export class DockList {
   constructor(list) {

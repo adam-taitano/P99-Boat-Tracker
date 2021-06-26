@@ -1,4 +1,6 @@
 import { Location } from './location.js';
+
+//Dock
 export class Dock {
   //provide dock object, or use default properties:
   constructor(info = {}) {
@@ -12,6 +14,7 @@ export class Dock {
       prev: null,
       hasBoat: false
     }, info);
+    Object.preventExtensions();
   }
 
   update(info) {

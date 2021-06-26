@@ -1,3 +1,7 @@
+import { Boat } from './boat.js';
+import { Countdown } from './Countdown.js';
+import { DockList } from './DockList.js';
+
 //Simulator
 export class Simulator {
   constructor(input) {

@@ -4,10 +4,10 @@ import { strict as assert } from 'assert';
 // var Dock = require('../modules/dock.js');
 
 describe('Dock', function() {
-  before(function() {
+  beforeEach(function() {
     this.dock = new Dock();
     this.obj = {};
-  })
+  });
   context('#constructor()', function() {
     it('should assign null to next and prev as default', function() {
       assert.equal(this.dock.next, null);
@@ -17,7 +17,7 @@ describe('Dock', function() {
       this.obj.travelTime = 360;
       this.dock.update(this.obj);
       assert.equal(this.dock.travelTime, this.obj.travelTime);
-    })
+    });
   });
   context('#update()', function() {
     it('preserve existing properties', function() {
@@ -29,6 +29,12 @@ describe('Dock', function() {
     it('merge properties passed in as an object', function() {
       this.dock.update({name: 'updated'});
       assert.equal(this.dock.name, 'updated');
-    })
-  })
+    });
+    it('does not add extra properties outside those defined in constructor', function() {
+      let dock = new Dock(this.obj);
+      this.obj.extra = true;
+      dock.update(this.obj);
+      assert.equal(typeof(this.dock.extra), 'undefined');
+    });
+  });
 });

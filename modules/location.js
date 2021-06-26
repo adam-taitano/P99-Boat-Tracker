@@ -9,6 +9,7 @@ export class Location {
       ymin: null,
       ymax: null
     }, info);
+    Object.preventExtensions();
   }
 
   update(info) {
@@ -17,12 +18,10 @@ export class Location {
 
   isMatch(x, y) {
     if (x.isNaN || y.isNaN) return false;
-    else {
-      let validx = false;
-      let validy = false;
-      if (this.xmin <= x && x <= this.xmax) validx = true;
-      if (this.ymin <= y && y <= this.ymax) validy = true;
-      return validx && validy;
-    }
+    let validx = false;
+    let validy = false;
+    if (this.xmin <= x && x <= this.xmax) validx = true;
+    if (this.ymin <= y && y <= this.ymax) validy = true;
+    return validx && validy;
   }
 }
