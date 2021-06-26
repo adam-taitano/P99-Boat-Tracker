@@ -16,12 +16,12 @@ export class Location {
     Object.assign(this, info);
   }
 
-  isMatch(x, y) {
-    if (x.isNaN || y.isNaN) return false;
+  isMatch(loc) {
+    if (loc.x.isNaN || loc.y.isNaN) return false;
     let validx = false;
     let validy = false;
-    if (this.xmin <= x && x <= this.xmax) validx = true;
-    if (this.ymin <= y && y <= this.ymax) validy = true;
+    if (this.xmin <= loc.x && loc.x <= this.xmax) validx = true;
+    if (this.ymin <= loc.y && loc.y <= this.ymax) validy = true;
     return validx && validy;
   }
 }

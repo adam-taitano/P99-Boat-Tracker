@@ -47,25 +47,18 @@ export class DockList {
 
   findByLoc(locObj) {
     //check if empty
-    if (this.count === 0) {
-      console.log("There are no docks to search.");
+    if (!this.head) {
       return null;
     }
-    //parse x and y locs
-    let x = locObj.x;
-    let y = locObj.y;
     //traverse list until match or at tail
-    current = this.head;
-    found = null;
-    while (current.next != null) {
-      //compare to each dock's x and y ranges
-      if (current.loc.xmin < x < current.loc.xmax && current.loc.ymin < y < current.loc.ymax) {
-        found = current;
+    let current = this.head;
+    while (current) {
+      if (current.loc.isMatch(locObj)) {
         break;
       }
       current = current.next;
     }
-    return found;
+    return current;
   }
 
   findByName(head, name) {

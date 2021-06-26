@@ -1,5 +1,6 @@
-import { Dock } from "../logic.js";
-import { DockList } from "../logic.js";
+import { Dock, DockList, Location } from "../logic.js";
+// import { DockList } from "../logic.js";
+// import { Location } from "../logic.js";
 import { strict as assert } from 'assert';
 
 describe('DockList', function() {
@@ -75,9 +76,40 @@ describe('DockList', function() {
     });
   });
   context('#findByLoc()', function() {
+    beforeEach(function() {
+      this.list.append(this.first);
+      this.list.append(this.second);
+      this.list.append(this.third);
+    });
+    it('returns dock if loc parameter is in range', function() {
+      let find = new Location({x: 100, y: -100});
+      this.list.tail.loc.update(find);
+      let found = typeof(this.list.findByLoc(find));
+      assert.equal(found, 'object');
+    });
+    it('returns null if loc parameter is not in range', function() {
+      let find = new Location({x: 100, y: 100});
+      let range = new Location({x: -100, y: -100, xmin: -200, xmax: 0, ymin: -200, ymax: 0 });
+      this.list.tail.loc.update(range);
+      let found = this.list.findByLoc(find);
+      assert.equal(found, null);
+    });
+    it('returns null if loc pararmeter is not a location object', function() {
 
+    });
+    it('returns null if list is empty', function() {
+
+    });
   });
   context('#findByName()', function() {
+    it('returns dock if name matches', function() {
 
+    });
+    it('returns null if name is not in docklist', function() {
+
+    });
+    it('returns null if parameter is not a string', function() {
+
+    });
   });
 });
