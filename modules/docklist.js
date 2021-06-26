@@ -1,5 +1,6 @@
 import { Dock } from './dock.js';
 import { Location } from './location.js';
+
 //PortList
 export class DockList {
   constructor(list) {
@@ -8,10 +9,12 @@ export class DockList {
     this.count = 0;
     if (list) {
       list.forEach(dock => {
-        this.append(dock);
-        ++this.count;
+        if (dock instanceof Dock) {
+          this.append(dock);
+        }
       });
     }
+    Object.preventExtensions();
   }
 
   append(dock) {
@@ -47,30 +50,32 @@ export class DockList {
 
   findByLoc(locObj) {
     //check if empty
-    if (this.count === 0) {
-      console.log("There are no docks to search.");
+    if (!this.head || !(locObj instanceof Location)) {
       return null;
     }
-    //parse x and y locs
-    let x = locObj.x;
-    let y = locObj.y;
     //traverse list until match or at tail
-    current = this.head;
-    found = null;
-    while (current.next != null) {
-      //compare to each dock's x and y ranges
-      if (current.loc.xmin < x < current.loc.xmax && current.loc.ymin < y < current.loc.ymax) {
-        found = current;
+    let current = this.head;
+    while (current) {
+      if (current.loc.isMatch(locObj)) {
         break;
       }
       current = current.next;
     }
-    return found;
+    return current;
+  }
+
+  //used as a public function to call recursive findByName
+  findName(name) {
+    if (!this.head || typeof name !== "string")
+      return null;
+    else {
+      return this.findByName(this.head, name);
+    }
   }
 
   findByName(head, name) {
     if (!head) return null;
-    else if (head.name === name) {
+    if (head.name === name) {
       return head;
     }
     else {

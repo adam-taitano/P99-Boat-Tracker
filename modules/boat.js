@@ -1,10 +1,11 @@
+import { Location } from './location.js';
 
-//boat
+//Boat
 export class Boat {
   constructor(input) {
     this.origin;
     this.destination;
-    this.loc = [input.xloc,input.yloc];
+    this.loc = new Location(input);
     this.status = ['departing', 'in transit', 'docking', 'docked'];
     this.heading = 0;
   }
