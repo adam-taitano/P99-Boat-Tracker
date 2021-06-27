@@ -5,7 +5,7 @@ export class Boat {
   constructor() {
     this.origin = null;
     this.destination = null;
-    this.lastDock = null;
+    this.prevDock = null;
     this.currentDock = null;
     this.nextDock = null;
     this.statusTypes = ['departing', 'in transit', 'docking', 'docked'];
@@ -14,13 +14,25 @@ export class Boat {
     Object.preventExtensions();
   }
 
-  update() {
-
+  update(boatObj) {
+    Object.assign(this, boatObj);
   }
 
   depart() {
-    //update origin and destination
-    //update heading from 0 to
+    if (!this.currentDock.next) {
+      this.reverse = true;
+      this.prevDock = this.currentDock;
+      this.prevDock.hasBoat = false;
+      this.nextDock = this.currentDock.prev;
+      while (this.currentDock.prev) {
+        this.currentDock = this.currentDock.prev;
+      }
+      this.destination = this.currentDock;
+      this.currentDock = null;
+    }
+    else {
+
+    }
   }
 
   dock() {
