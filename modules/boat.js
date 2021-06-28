@@ -19,20 +19,7 @@ export class Boat {
   }
 
   depart() {
-    if (!this.currentDock.next) {
-      this.reverse = true;
-      this.prevDock = this.currentDock;
-      this.prevDock.hasBoat = false;
-      this.nextDock = this.currentDock.prev;
-      while (this.currentDock.prev) {
-        this.currentDock = this.currentDock.prev;
-      }
-      this.destination = this.currentDock;
-      this.currentDock = null;
-    }
-    else {
-
-    }
+    return false;
   }
 
   dock() {

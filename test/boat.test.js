@@ -1,11 +1,11 @@
 import { Boat, Dock, DockList, Location } from "../logic.js";
 import { strict as assert } from 'assert';
 
-describe('Boat', function() {
+describe.only('Boat', function() {
   beforeEach(function() {
     this.boat = new Boat();
   });
-  context('#constructor()', function() {
+  describe('#constructor()', function() {
     it('set origin and destination to null', function() {
       assert.equal(this.boat.origin, null);
       assert.equal(this.boat.destination, null);
@@ -26,11 +26,15 @@ describe('Boat', function() {
       assert.equal(this.boat.reverse, false);
     });
   });
-  context('#update()', function() {
+  after(function() {
+    this.boat = new Boat();
+  });
+  describe('#update()', function() {
     beforeEach(function() {
       this.merge = new Boat();
       this.merge.reverse = true;
-      this.merge.nextDock = new Dock();
+      this.merge.nextDock = new Dock({name: 'next'});
+      this.merge.prevDock = new Dock({name: 'prev'});
       this.merge.other = 0;
       this.boat.update(this.merge);
     });
@@ -44,33 +48,42 @@ describe('Boat', function() {
       assert.notEqual(this.boat.nextDock, null);
     });
     it('updates nextDock to currentDock.next', function() {
-
+      assert.equal(this.boat.nextDock.name, this.merge.nextDock.name);
     });
     it('updates prevDock to currentDock.prev', function() {
-
+      assert.equal(this.boat.prevDock.name, this.merge.prevDock.name)
     });
   });
-  beforeEach(function() {
-    this.list = new DockList();
-    this.first = new Dock({name: 'first'});
-    this.middle = new Dock({name: 'second'});
-    this.last = new Dock({name: 'third'});
-  });
-  context('#traverse()', function() {
+  describe('#traverse()', function() {
+    beforeEach(function() {
+      this.list = new DockList();
+      this.first = new Dock({name: 'first'});
+      this.middle = new Dock({name: 'second'});
+      this.last = new Dock({name: 'third'});
+      this.list.append(this.first);
+      this.list.append(this.middle);
+      this.list.append(this.last);
+      this.boat.currentDock = this.middle;
+    });
     it('returns false if nextDock is null', function() {
-
+      this.boat.currentDock = this.last;
+      let result = this.boat.depart();
+      assert.equal(result, false);
     });
     it('returns true if nextDock is not null', function() {
-
+      let result = this.boat.traverse();
+      assert.equal(result, false);
     });
     it('sets nextDock to currentDock.next', function() {
-
+      this.boat.traverse();
+      assert.equal(this.boat.nextDock, this.last);
     });
     it('sets currentDock to null', function() {
-
+      this.boat.traverse();
+      assert.equal(this.boat.currentDock, null);
     });
   });
-  context('#reverse()', function() {
+  describe('#reverse()', function() {
     it('returns false if prevDock is null', function() {
 
     });
@@ -84,7 +97,7 @@ describe('Boat', function() {
 
     });
   });
-  context('#depart()', function() {
+  describe('#depart()', function() {
     beforeEach(function() {
       this.boat.currentDock = this.last;
       this.boat.depart();
@@ -137,7 +150,7 @@ describe('Boat', function() {
       assert.equal(this.boat.prevDock, false);
     });
   });
-  context('#dock()', function() {
+  describe('#dock()', function() {
     it('sets status to (2 - docking) according to docking time', function() {
       assert.equal(false, true);
     });
