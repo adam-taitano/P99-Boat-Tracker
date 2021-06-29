@@ -85,16 +85,21 @@ describe.only('Boat', function() {
   });
   describe('#reverse()', function() {
     it('returns false if prevDock is null', function() {
-
+      this.boat.currentDock = this.first;
+      let result = this.boat.reverse();
+      assert.equal(result, false);
     });
     it('returns true of prevDock is not null', function() {
-
+      let result = this.boat.reverse();
+      assert.equal(result, true);
     });
     it('sets prevDock to currentDock.prev', function() {
-
+      this.boat.reverse();
+      assert.equal(this.boat.prevDock, this.first);
     });
     it('sets currentDock to null', function() {
-
+      this.boat.reverse();
+      assert.equal(this.boat.currentDock, null);
     });
   });
   describe('#depart()', function() {
@@ -107,17 +112,23 @@ describe.only('Boat', function() {
           assert.equal(this.boat.reverse, true);
         });
         it('if #traverse() is false, sets reverse to true', function() {
-
+          let result = this.boat.depart();
+          assert.equal(result, false);
+          assert.equal(this.boat.reverse, true);
         });
-        it('if #traverse() is false, calls itself', function() {
-
+        it('if #traverse() is false, boat reverses to middle', function() {
+          assert.equal(this.boat.currentDock, this.middle);
         });
       context('if reverse is true', function() {
-        it('checks if #reverse() is true', function() {
-
+        it('reverses if prevDock is not null', function() {
+          this.boat.reverse = true;
+          let result = this.boat.depart();
+          assert.equal(this.boat.currentDock, this.middle);
         })
         it('sets reverse to false if #reverse() is false', function() {
-
+          this.boat.currentDock = this.first;
+          this.boat.depart();
+          assert.equal(this.boat.reverse, false);
         });
       });
     });
