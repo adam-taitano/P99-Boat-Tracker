@@ -10,16 +10,45 @@ export class Boat {
     this.nextDock = null;
     this.statusTypes = ['departing', 'in transit', 'docking', 'docked'];
     this.status = 3;
-    this.reverse = false;
+    this.inReverse = false;
     Object.preventExtensions();
   }
 
   update(boatObj) {
     Object.assign(this, boatObj);
+    if(this.currentDock) {
+      this.nextDock = this.currentDock.next;
+      this.prevDock = this.currentDock.prev;
+    }
+  }
+
+  traverse() {
+    if (!this.nextDock)
+      return false;
+    else {
+      this.currentDock = null;
+      return true;
+    }
+  }
+
+  reverse() {
+    if (!this.prevDock)
+      return false;
+    else {
+      this.currentDock = null;
+      return true;
+    }
   }
 
   depart() {
-    return false;
+    if (!this.inReverse)
+      if (this.traverse()) { return true; }
+      else {
+        this.inReverse = true;
+      }
+    else {
+      return false;
+    }
   }
 
   dock() {
