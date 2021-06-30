@@ -41,7 +41,14 @@ export class Boat {
   }
 
   depart() {
-    return false;
+    if (!this.inReverse)
+      if (this.traverse()) { return true; }
+      else {
+        this.inReverse = true;
+      }
+    else {
+      return false;
+    }
   }
 
   dock() {

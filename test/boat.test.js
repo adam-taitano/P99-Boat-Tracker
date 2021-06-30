@@ -86,6 +86,17 @@ describe.only('Boat', function() {
     });
   });
   describe('#reverse()', function() {
+    beforeEach(function() {
+      this.list = new DockList();
+      this.first = new Dock({name: 'first'});
+      this.middle = new Dock({name: 'second'});
+      this.last = new Dock({name: 'third'});
+      this.list.append(this.first);
+      this.list.append(this.middle);
+      this.list.append(this.last);
+      this.boat.currentDock = this.middle;
+      this.boat.update();
+    });
     it('returns false if prevDock is null', function() {
       this.boat.currentDock = this.first;
       this.boat.update();
@@ -99,6 +110,8 @@ describe.only('Boat', function() {
       assert.equal(result, true);
     });
     it('sets prevDock to currentDock.prev', function() {
+      this.boat.currentDock = this.middle;
+      this.boat.update();
       this.boat.reverse();
       assert.equal(this.boat.prevDock, this.first);
     });
@@ -109,10 +122,18 @@ describe.only('Boat', function() {
   });
   describe('#depart()', function() {
     beforeEach(function() {
+      this.list = new DockList();
+      this.first = new Dock({name: 'first'});
+      this.middle = new Dock({name: 'second'});
+      this.last = new Dock({name: 'third'});
+      this.list.append(this.first);
+      this.list.append(this.middle);
+      this.list.append(this.last);
       this.boat.currentDock = this.last;
+      this.boat.update();
       this.boat.depart();
     });
-      context('if reverse is false', function() {
+      context('if inReverse is false', function() {
         it('checks if #traverse() is true', function() {
           assert.equal(this.boat.inReverse, true);
         });
